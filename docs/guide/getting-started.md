@@ -1,47 +1,34 @@
-<script setup lang="ts">
-import Clock from '/components/Clock.vue';
-</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flip Clock Example</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.8/flipclock.css">
+</head>
+<body>
+    <div class="clock"></div>
 
-# Getting Started
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.8/flipclock.min.js"></script>
+    <script>
+        // Initialize the clock
+        var clock = new FlipClock(document.querySelector('.clock'), {
+            clockFace: 'TwelveHourClock',
+            autoStart: true,
+            countdown: false
+        });
 
-## Installation
+        // Set initial time: 7:30 AM
+        var currentTime = new Date();
+        currentTime.setHours(7);
+        currentTime.setMinutes(30);
+        currentTime.setSeconds(0);
+        currentTime.setMilliseconds(0);
 
-### Package Manager
-
-Package manager like [pnpm](https://pnpm.io), [yarn](https://classic.yarnpkg.com/en/), [npm](https://www.npmjs.com), etc.
-  
-::: code-group
-```bash [pnpm]
-pnpm i flipclock
-```
-
-```bash [yarn]
-yarn add flipclock
-```
-
-```bash [npm]
-npm i flipclock
-```
-
-```bash [bun]
-bun i flipclock
-```
-:::
-
-### CDN
-
-::: code-group
-```html [JSDelivr]
-<script src="https://cdn.jsdelivr.net/npm/flipclock@^1/dist/FlipClock.umd.js"></script>
-```
-
-```html [Unpkg]
-<script src="https://unpkg.com/flipclock@^1/dist/FlipClock.umd.js"></script>
-```
-:::
-
-## Basic Example
-
-<Clock />
-
-<<< @/components/Clock.vue#imports,parent,example{ts}
+        // Start from that time
+        clock.setTime(currentTime.getHours() * 3600 + currentTime.getMinutes() * 60 + currentTime.getSeconds());
+        clock.start();
+    </script>
+</body>
+</html>
+``
